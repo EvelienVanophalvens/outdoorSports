@@ -9,7 +9,7 @@ const OverviewScreen = ({ navigation }) => {
 
   const getProducts = async () => { //-> assincrone functie, pas na een tijd uitgevoerd, je weet wanneer, pas api wanneer app al klaar staat
     try { //stuk code proberen als het niet lukt, error afprinten
-      const response = await fetch("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts?categories=12&_embed", { //data ophalen, response = wat je terugkrijgr van API = resultaat, await= //wachten tot fetch klaar is, !belangrijk!
+      const response = await fetch("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts?categories=12&_embed&per_page=20", { //data ophalen, response = wat je terugkrijgr van API = resultaat, await= //wachten tot fetch klaar is, !belangrijk!
         "method": "GET", //GET = data ophalen, POST = data verzenden
       })
       const json = await response.json(); //naar het  juiste bestandsformaat omzetten
