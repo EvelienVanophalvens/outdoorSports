@@ -6,6 +6,11 @@ const ProductItem = props => {
     <TouchableOpacity activeOpacity={0.5}>
       <View style={styles.listItem}>
         <Text>{props.title}</Text>
+        <Image style={styles.image}
+        source={{
+          uri: props.image,
+        }}
+      />
       </View>
     </TouchableOpacity >
 

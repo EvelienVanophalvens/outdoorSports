@@ -35,6 +35,7 @@ const OverviewScreen = ({ navigation }) => {
         renderItem={({ item }) => (
           <ProductItem
             title={item.title.rendered}
+            image= {item._embedded['wp:featuredmedia']['0'].source_url}
           />
         )}
       />
