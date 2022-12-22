@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, FlatList } from 'react-native';
 
 
 const Details = props => {
-  const [details, setdetails] = useState({});
+  const [details, setdetails] = useState([]);
 
   const getdetailsById = async () => {
     try {
       console.log(props.productId);
-      const url = encodeURI("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts?_embed&include[]=" + props.productId)
+      const url = encodeURI("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts/" +  props.productId + "?_embed&include[]=")
       const response = await fetch(url, {
         "method": "GET",
       })
@@ -25,8 +25,11 @@ const Details = props => {
   }, []);
 
   return (
+    console.log(details),
     <ScrollView>
-      <Text style={styles.title}>{details[0].id}</Text>
+      <Text style={styles.title}>{details.id}</Text>
+      <Text style={styles.title}>{details.title.rendered}</Text>
+
     </ScrollView>
   );
 }
