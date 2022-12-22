@@ -9,16 +9,16 @@ const OverviewScreen = ({ navigation }) => {
   const [filter, setFilters] =  useState(0);
 
   const snowboard = () => {
-    setFilters((currentfilter) => currentfilter = 1);
+    setFilters((currentfilter) => currentfilter = 9);
 
   }
 
   const ski = () => {
-    setFilters((currentfilter) => currentfilter = 2); 
+    setFilters((currentfilter) => currentfilter = 10); 
   }
 
   const wandelen = () => {
-    setFilters((currentfilter) => currentfilter = 3);
+    setFilters((currentfilter) => currentfilter = 8);
 
   }
 
@@ -44,10 +44,9 @@ const OverviewScreen = ({ navigation }) => {
       console.error(error);
       
     }
-  }else if(filter === 1){
-
+  }else {
     try { //stuk code proberen als het niet lukt, error afprinten
-      const response = await fetch("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts?categories=12&categories=9&_embed&per_page=20", { //data ophalen, response = wat je terugkrijgr van API = resultaat, await= //wachten tot fetch klaar is, !belangrijk!
+      const response = await fetch("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts?categories=12&categories="+ filter +"&_embed&per_page=20", { //data ophalen, response = wat je terugkrijgr van API = resultaat, await= //wachten tot fetch klaar is, !belangrijk!
         "method": "GET", //GET = data ophalen, POST = data verzenden
       })
       const json = await response.json(); //naar het  juiste bestandsformaat omzetten
@@ -58,31 +57,8 @@ const OverviewScreen = ({ navigation }) => {
       console.error(error);
       
     }
-  }else if(filter === 2){
-      try { //stuk code proberen als het niet lukt, error afprinten
-        const response = await fetch("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts?categories=12&categories=10&_embed&per_page=20", { //data ophalen, response = wat je terugkrijgr van API = resultaat, await= //wachten tot fetch klaar is, !belangrijk!
-          "method": "GET", //GET = data ophalen, POST = data verzenden
-        })
-        const json = await response.json(); //naar het  juiste bestandsformaat omzetten
-        console.log(json);
-        //movies = json.result) mag niet !!!!!!!!!
-        setProducts(json);
-      } catch (error) {
-        console.error(error);
-    }
-  }else{
-    try { //stuk code proberen als het niet lukt, error afprinten
-      const response = await fetch("https://evelienvanophalvens.be/index.php/wp-json/wp/v2/posts?categories=12&categories=8&_embed&per_page=20", { //data ophalen, response = wat je terugkrijgr van API = resultaat, await= //wachten tot fetch klaar is, !belangrijk!
-        "method": "GET", //GET = data ophalen, POST = data verzenden
-      })
-      const json = await response.json(); //naar het  juiste bestandsformaat omzetten
-      console.log(json);
-      //movies = json.result) mag niet !!!!!!!!!
-      setProducts(json);
-    } catch (error) {
-      console.error(error);
   }
-  }
+  
 
   }
   
@@ -107,7 +83,7 @@ const OverviewScreen = ({ navigation }) => {
             id = {item.id}
             title={item.title.rendered}
             image= {item._embedded['wp:featuredmedia']['0'].source_url}
-            onSelectProduct={(selectedId) => { navigation.navigate('Detail', { productId: selectedId }) }}
+            onSelectProduct={(selectedId) => { navigation.navigate('Detail', { id: selectedId,  title: item.title.rendered, image: item._embedded['wp:featuredmedia']['0'].source_url, discription: item.content.rendered,  }) }}
           />
         )}
       />

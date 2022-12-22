@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
+import { StyleSheet, View, Button, Text, ScrollView, Image } from 'react-native';
 
-import Details from '../components/detail';
 
 
 const DetailScreen = ({ route, navigation }) => {
@@ -10,8 +9,11 @@ const DetailScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.screen}>
-       <Details productId={productId}/>
-
+       <ScrollView>
+      <Text style={styles.title}>{route.params.title}</Text>
+      <Image style={styles.image} source={{uri: route.params.image,}}/>
+      <Text style={styles.description}> {route.params.discription} </Text>
+    </ScrollView>
       <Button
         title="Go to overview"
         onPress={() => navigation.navigate('Overview')}
@@ -24,6 +26,10 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
+  },
+  image :{
+    height: 200,
+    width: 200,
   }
 });
 export default DetailScreen;
