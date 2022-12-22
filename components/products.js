@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, } from 'react-native';
+
+
 
 const ProductItem = props => {
   return (
-    <TouchableOpacity activeOpacity={0.5}>
+    <TouchableOpacity activeOpacity={0.5}  onPress={() => props.onSelectProduct(props.id)}>
       <View style={styles.listItem}>
         <Text>{props.title}</Text>
         <Image style={styles.image}

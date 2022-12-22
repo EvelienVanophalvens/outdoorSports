@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, FlatList, Button} from 'react-native';
 
 import ProductItem from '../components/products';
 
+
+
 const OverviewScreen = ({ navigation }) => {
   const [filter, setFilters] =  useState(0);
 
@@ -92,18 +94,20 @@ const OverviewScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <View style = {styles.filters}>
-        <Touchable onPress={() => { snowboard(); getProducts(); }} title={'snowboard'}/>
+        <Button onPress={() => { snowboard(); getProducts(); }} title={'snowboard'}/>
         <Button onPress={() => { ski(); getProducts(); }} title={'skiën'}/>
         <Button onPress={() => { wandelen(); getProducts(); }} title={'Wandelen'}/>
         <Button onPress={() => { reset(); getProducts(); }} title={'Reset'}/>
       </View>
-      <FlatList //lussen, zoals foor loop
+      <FlatList //lussen, zoals for loop
         data={products}
         keyExtractor={item => item.id}//gebruik imdb_id als key voor de flatlist
         renderItem={({ item }) => (
           <ProductItem
+            id = {item.id}
             title={item.title.rendered}
             image= {item._embedded['wp:featuredmedia']['0'].source_url}
+            onSelectProduct={(selectedId) => { navigation.navigate('Detail', { productId: selectedId }) }}
           />
         )}
       />
@@ -121,4 +125,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   }
 });
+
+
 export default OverviewScreen;
