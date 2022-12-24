@@ -1,9 +1,11 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
 
 
 
-const ProductItem = props => {
+const ProductItem = (props) => {
+
+
   return (
     <TouchableOpacity activeOpacity={0.5}  onPress={() => props.onSelectProduct(props.id)}>
       <View style={styles.listItem}>
@@ -14,6 +16,7 @@ const ProductItem = props => {
         }}
       />
       </View>
+      <Button  title="Toevoegen aan favorieten" onPress = {() => props.addFavourites(props.id) } />
     </TouchableOpacity >
 
   );

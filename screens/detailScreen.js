@@ -5,6 +5,7 @@ import { StyleSheet, View, Button, Text, ScrollView, Image } from 'react-native'
 const DetailScreen = ({ route, navigation }) => {
 
 
+
   return (
     <View style={styles.screen}>
        <ScrollView>
@@ -14,7 +15,7 @@ const DetailScreen = ({ route, navigation }) => {
       </ScrollView>
       <Button
         title="voeg toe aan favorieten"
-        onPress={() => navigation.navigate("Favourites", { id: route.params.id,  title: route.params.title, image:route.params.image,  })}
+        onPress={() => navigation.navigate("Favourites", {  favourites} )}
       />
 
       <Button

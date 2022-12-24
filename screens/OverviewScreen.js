@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, Button} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button, Image} from 'react-native';
 
 import ProductItem from '../components/products';
 
@@ -27,7 +27,10 @@ const OverviewScreen = ({ navigation }) => {
 
   }
 
-  const [products, setProducts] = useState([]); //movies read only, setMovies is een functie om de movies aan te passen 
+
+
+
+  const [products, setProducts] = useState([]); 
 
   const getProducts = async () => { //-> assincrone functie, pas na een tijd uitgevoerd, je weet wanneer, pas api wanneer app al klaar staat
     if(filter === 0){
@@ -38,7 +41,6 @@ const OverviewScreen = ({ navigation }) => {
       })
       const json = await response.json(); //naar het  juiste bestandsformaat omzetten
       console.log(json);
-      //movies = json.result) mag niet !!!!!!!!!
       setProducts(json);
     } catch (error) {
       console.error(error);
@@ -51,7 +53,7 @@ const OverviewScreen = ({ navigation }) => {
       })
       const json = await response.json(); //naar het  juiste bestandsformaat omzetten
       console.log(json);
-      //movies = json.result) mag niet !!!!!!!!!
+  
       setProducts(json);
     } catch (error) {
       console.error(error);
@@ -63,12 +65,33 @@ const OverviewScreen = ({ navigation }) => {
   }
   
   useEffect(() => {
-    getProducts();//laad upcomming movies wanneer het scherm laadt 
+    getProducts();
   }, []);
+
+
+   const  [favourites, setFavourites] = useState ([]);
+
+  const addFavourites = (id) => {
+
+    const favourite = products.find( c => c.id == id);
+
+    setFavourites((currentFavourites) => [...currentFavourites, favourite ]  );
+
+    console.log(favourites);
+
+  }
+
+
 
 
   return (
     <View style={styles.screen}>
+      <View>
+        <Image>
+          
+        </Image>
+        <Text>0</Text>
+      </View>
       <View style = {styles.filters}>
         <Button onPress={() => { snowboard(); getProducts(); }} title={'snowboard'}/>
         <Button onPress={() => { ski(); getProducts(); }} title={'skiën'}/>
@@ -77,12 +100,12 @@ const OverviewScreen = ({ navigation }) => {
       </View>
       <FlatList //lussen, zoals for loop
         data={products}
-        keyExtractor={item => item.id}//gebruik imdb_id als key voor de flatlist
         renderItem={({ item }) => (
           <ProductItem
             id = {item.id}
             title={item.title.rendered}
             image= {item._embedded['wp:featuredmedia']['0'].source_url}
+            addFavourites={addFavourites}
             onSelectProduct={(selectedId) => { navigation.navigate('Detail', { id: selectedId,  title: item.title.rendered, image: item._embedded['wp:featuredmedia']['0'].source_url, discription: item.content.rendered,  }) }}
           />
         )}
@@ -103,4 +126,6 @@ const styles = StyleSheet.create({
 });
 
 
-export default OverviewScreen;
+
+
+export default OverviewScreen
