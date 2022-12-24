@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Button, Text, ScrollView, Image } from 'react-native';
 
 
-
 const DetailScreen = ({ route, navigation }) => {
-  const { productId } = route.params;
-  console.log(productId);
+
 
   return (
     <View style={styles.screen}>
        <ScrollView>
-      <Text style={styles.title}>{route.params.title}</Text>
-      <Image style={styles.image} source={{uri: route.params.image,}}/>
-      <Text style={styles.description}> {route.params.discription} </Text>
-    </ScrollView>
+          <Text style={styles.title}>{route.params.title}</Text>
+          <Image style={styles.image} source={{uri: route.params.image,}}/>
+          <Text style={styles.description}> { route.params.discription} </Text>
+      </ScrollView>
       <Button
-        title="Go to overview"
-        onPress={() => navigation.navigate('Overview')}
-        
+        title="voeg toe aan favorieten"
+        onPress={() => navigation.navigate("Favourites", { id: route.params.id,  title: route.params.title, image:route.params.image,  })}
+      />
+
+      <Button
+        title="Ga naar overzicht"
+        onPress={() => navigation.navigate('Overview')} 
       />
     </View>
   );
