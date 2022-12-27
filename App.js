@@ -16,7 +16,6 @@ export default function App() {
         <Stack.Screen name="Overview" component={OverviewScreen} />
         <Stack.Screen name="Detail" component={detailScreen} />
         <Stack.Screen name="Favourites" component={favouritesScreen} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );

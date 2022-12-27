@@ -1,33 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, Button, Image} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button, Image, FlatList} from 'react-native';
 
+import FavouritesItem from '../components/favouritesItem';
 
 
 const FavouritesScreen = ({ route, navigation }) => {
-    return (
-        <View style={styles.screen}>
-           <ScrollView>
-              <Text style={styles.title}>{route.params.title}</Text>
-              <Image style={styles.image} source={{uri: route.params.image,}}/>
-          </ScrollView>
-          <Button
-            title="Ga naar overzicht"
-            onPress={() => navigation.navigate('Overview')} 
+    console.log(route.params.favourites);
+
+    return(
+    <View>
+         <FlatList //lussen, zoals for loop
+        data={route.params.favourites}
+        renderItem={({ item }) => (
+          <FavouritesItem
+            id = {item.id}
+            title={item.title.rendered}
+            image= {item._embedded['wp:featuredmedia']['0'].source_url}
           />
-        </View>
-      );
-    }
-    const styles = StyleSheet.create({
-      screen: {
-        flex: 1,
-        justifyContent: 'center',
-      },
-      image :{
-        height: 200,
-        width: 200,
-      }
-    });
+        )}
+      />
+    </View>
 
+    )
 
+}
 
 export default FavouritesScreen;

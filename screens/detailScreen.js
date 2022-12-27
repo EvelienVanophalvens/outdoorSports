@@ -4,8 +4,6 @@ import { StyleSheet, View, Button, Text, ScrollView, Image } from 'react-native'
 
 const DetailScreen = ({ route, navigation }) => {
 
-
-
   return (
     <View style={styles.screen}>
        <ScrollView>
@@ -13,18 +11,11 @@ const DetailScreen = ({ route, navigation }) => {
           <Image style={styles.image} source={{uri: route.params.image,}}/>
           <Text style={styles.description}> { route.params.discription} </Text>
       </ScrollView>
-      <Button
-        title="voeg toe aan favorieten"
-        onPress={() => navigation.navigate("Favourites", {  favourites} )}
-      />
-
-      <Button
-        title="Ga naar overzicht"
-        onPress={() => navigation.navigate('Overview')} 
-      />
+      <Button title="Ga naar overzicht"  onPress={() => navigation.navigate('Overview')} />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

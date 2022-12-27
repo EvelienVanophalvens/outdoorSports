@@ -3,16 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-n
 
 
 
-const ProductItem = (props) => {
+const FavouritesItem = (props) => {
 
 
   return (
     <TouchableOpacity activeOpacity={0.5}  onPress={() => props.onSelectProduct(props.id)}>
       <View style={styles.listItem}>
         <Text>{props.title}</Text>
-        <Image style={styles.image}  source={{uri: props.image, }} />
+        <Image style={styles.image} source={{ uri: props.image, }}
+      />
       </View>
-      <Button  title="Toevoegen aan favorieten" onPress = {() => props.addFavourites(props.id) } />
     </TouchableOpacity >
 
   );
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     height: 100,
   }
 });
-export default ProductItem;
+export default FavouritesItem;
