@@ -7,7 +7,7 @@ const ProductItem = (props) => {
 
 
   return (
-    <TouchableOpacity activeOpacity={0.5}  onPress={() => props.onSelectProduct(props.id)}>
+    <TouchableOpacity style={styles.listItems} activeOpacity={0.5}  onPress={() => props.onSelectProduct(props.id)}>
       <View style={styles.listItem}>
         <Text>{props.title}</Text>
         <Image style={styles.image}  source={{uri: props.image, }} />
@@ -19,12 +19,18 @@ const ProductItem = (props) => {
 }
 
 const styles = StyleSheet.create({
+  listItems: {
+    flex: 1,
+    alignItems: 'center',
+  },
   listItem: {
     padding: 10,
     marginVertical: 5,
     borderColor: 'grey',
     borderStyle: 'dashed',
     borderWidth: 0.5,
+    height: 200,
+    alignItems: 'center'
   },
   image:{
     width: 100,

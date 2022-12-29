@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, Button, Image, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button, Image, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import ProductItem from '../components/products';
 
 
@@ -29,7 +29,6 @@ const OverviewScreen = ({ navigation }) => {
           "method": "GET", //GET = data ophalen, POST = data verzenden
         })
         const json = await response.json(); //naar het  juiste bestandsformaat omzetten
-        console.log(json);
         setProducts(json);
       } 
       catch (error) {
@@ -42,7 +41,6 @@ const OverviewScreen = ({ navigation }) => {
           "method": "GET", //GET = data ophalen, POST = data verzenden
         })
         const json = await response.json(); //naar het  juiste bestandsformaat omzetten
-        console.log(json);
         setProducts(json);
       } 
       catch (error) {
@@ -67,13 +65,22 @@ const OverviewScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <View style = {styles.filters}>
-        <Button onPress={() => { snowboard(); getProducts(); }} title={'snowboard'}/>
-        <Button onPress={() => { ski(); getProducts(); }} title={'skiën'}/>
-        <Button onPress={() => { wandelen(); getProducts(); }} title={'Wandelen'}/>
-        <Button onPress={() => { reset(); getProducts(); }} title={'Reset'}/>
+        <TouchableWithoutFeedback  onPress={() => { snowboard(); getProducts(); }}>
+          <Text  style = {styles.filter}>snowboard</Text>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback  onPress={() => { ski(); getProducts(); }}>
+          <Text  style = {styles.filter}>skiën</Text>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback  onPress={() => { wandelen(); getProducts(); }}>
+          <Text  style = {styles.filter}>wandelen</Text>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback  onPress={() => { reset(); getProducts(); }}>
+          <Text  style = {styles.filter}>reset</Text>
+        </TouchableWithoutFeedback>
       </View>
-      <Button title = "Ga naar favoritieten" onPress={() => { navigation.navigate('Favourites', {favourites: favourites} ) }}/>
       <FlatList //lussen, zoals for loop
+       style = {styles.products}
+       numColumns={2}
         data={products}
         renderItem={({ item }) => (
           <ProductItem
@@ -85,19 +92,44 @@ const OverviewScreen = ({ navigation }) => {
           />
         )}
       />
-   
-    </View >
+      <TouchableWithoutFeedback  onPress={() => { navigation.navigate('Favourites', {favourites: favourites} ) }}>
+        <Text  style = {styles.button}>Ga Naar Favorieten</Text>
+      </TouchableWithoutFeedback>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screen: {
     padding: 50,
+
   },
   filters:{
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    bottom: 30,
+  },
+  filter:{
+    backgroundColor: "#F37E21",
+    color: "white",
+    textAlign:"center",
+    borderRadius: 5,
+    padding: 7,
+    textTransform: "uppercase"
+  },
+  products:{
+    bottom:30,
+
+  },
+  button:{
+    backgroundColor: "#F37E21",
+    color: "white",
+    textAlign:"center",
+    padding: 10,
+    bottom: 25, 
+    borderRadius: 5,
+    textTransform: "uppercase"
   }
 });
 
