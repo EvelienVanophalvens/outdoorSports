@@ -8,8 +8,10 @@ const DetailScreen = ({ route, navigation }) => {
     <View style={styles.screen}>
        <ScrollView style={styles.info}>
           <Text style={styles.title}>{route.params.title}</Text>
-          <Image style={styles.image} source={{uri: route.params.image,}}/>
-          <Text style={styles.description}> { route.params.discription} </Text>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate("picture",{picture: route.params.image}) }>
+            <Image style={styles.image} source={{uri: route.params.image,}}/>
+          </TouchableWithoutFeedback>
+          <Text style={styles.description}> { route.params.discription} </Text>   
       </ScrollView>
       <TouchableWithoutFeedback onPress={() => navigation.navigate('Overview')}>
         <Text style = {styles.button}>Ga Naar Overzicht</Text>
