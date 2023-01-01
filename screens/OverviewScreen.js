@@ -101,14 +101,14 @@ const OverviewScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 50,
+    paddingVertical: 50,
 
   },
   filters:{
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    bottom: 30,
+    justifyContent: 'center',
+    bottom: 45,
   },
   filter:{
     backgroundColor: "#F37E21",
@@ -116,10 +116,11 @@ const styles = StyleSheet.create({
     textAlign:"center",
     borderRadius: 5,
     padding: 7,
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    margin: 7,
   },
   products:{
-    bottom:30,
+    bottom:45,
 
   },
   button:{
@@ -127,8 +128,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign:"center",
     padding: 10,
-    bottom: 25, 
-    borderRadius: 5,
+    bottom: 40, 
     textTransform: "uppercase"
   }
 });

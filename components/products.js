@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Button, TouchableWithoutFeedback } from 'react-native';
 
 
 
@@ -12,7 +12,9 @@ const ProductItem = (props) => {
         <Text>{props.title}</Text>
         <Image style={styles.image}  source={{uri: props.image, }} />
       </View>
-      <Button  title="Toevoegen aan favorieten" onPress = {() => props.addFavourites(props.id) } />
+      <TouchableWithoutFeedback onPress = {() => props.addFavourites(props.id) }>
+        <Text  style = {styles.button}>Toevoegen aan favorieten</Text>
+      </TouchableWithoutFeedback>
     </TouchableOpacity >
 
   );
@@ -35,6 +37,12 @@ const styles = StyleSheet.create({
   image:{
     width: 100,
     height: 100,
+  },
+  button:{
+    backgroundColor: "#2196F3",
+    color: "white",
+    textAlign:"center",
+    padding: 10,
   }
 });
 export default ProductItem;
