@@ -1,12 +1,12 @@
-import { View, ImageBackground, StyleSheet} from 'react-native';
+import {  ImageBackground, StyleSheet} from 'react-native';
 
 
 
 const PictureScreen = ({ route, navigation }) => {
   console.log(route.params.picture)
     return(
-           <ImageBackground style={styles.image} source={{uri: route.params.picture}}>
-          </ImageBackground>
+            <ImageBackground style={styles.image} source={{uri: route.params.picture}}>
+            </ImageBackground>
     )
 
 }
