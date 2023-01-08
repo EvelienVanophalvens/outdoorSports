@@ -61,6 +61,7 @@ const OverviewScreen = ({ navigation }) => {
     }
   }
 
+  console.log(products);
 
   return (
     <View style={styles.screen}>

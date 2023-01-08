@@ -6,20 +6,12 @@ import detailScreen from './screens/detailScreen';
 import favouritesScreen from './screens/favouritesScreen';
 import PictureScreen from './screens/pictureScreen';
 
-
-
-
 const Stack = createNativeStackNavigator();
-
-
-
-
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-      >
+      <Stack.Navigator>
         <Stack.Screen name="Overview" component={OverviewScreen} />
         <Stack.Screen name="Detail" component={detailScreen} options={{animation:'slide_from_bottom'}} />
         <Stack.Screen name="Favourites" component={favouritesScreen}  />

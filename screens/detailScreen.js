@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Button, Text, ScrollView, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image, TouchableWithoutFeedback } from 'react-native';
 
 
 const DetailScreen = ({ route, navigation }) => {
@@ -11,7 +11,9 @@ const DetailScreen = ({ route, navigation }) => {
           <TouchableWithoutFeedback onPress={() => navigation.navigate("picture",{picture: route.params.image}) }>
             <Image style={styles.image} source={{uri: route.params.image,}}/>
           </TouchableWithoutFeedback>
-          <Text style={styles.description}> { route.params.discription} </Text>   
+          <WebView>
+            <Text style={styles.description}> { route.params.discription} </Text>   
+          </WebView>
       </ScrollView>
       <TouchableWithoutFeedback onPress={() => navigation.navigate('Overview')}>
         <Text style = {styles.button}>Ga Naar Overzicht</Text>
