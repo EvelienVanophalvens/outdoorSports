@@ -11,9 +11,7 @@ const DetailScreen = ({ route, navigation }) => {
           <TouchableWithoutFeedback onPress={() => navigation.navigate("picture",{picture: route.params.image}) }>
             <Image style={styles.image} source={{uri: route.params.image,}}/>
           </TouchableWithoutFeedback>
-          <WebView>
             <Text style={styles.description}> { route.params.discription} </Text>   
-          </WebView>
       </ScrollView>
       <TouchableWithoutFeedback onPress={() => navigation.navigate('Overview')}>
         <Text style = {styles.button}>Ga Naar Overzicht</Text>
